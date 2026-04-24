@@ -10,3 +10,8 @@ for year in range(1880, 2011):
 names = pd.concat(pieces, ignore_index=True)
 print (names.dtypes)
 print(names)
+
+total_births = names.pivot_table("births", index="year",columns="sex", aggfunc=sum)
+total_births.tail()
+
+total_births.plot(title="Total births by sex and year")
