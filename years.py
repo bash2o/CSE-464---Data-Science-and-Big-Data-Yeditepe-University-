@@ -15,3 +15,9 @@ total_births = names.pivot_table("births", index="year",columns="sex", aggfunc=s
 total_births.tail()
 
 total_births.plot(title="Total births by sex and year")
+
+def add_prop(group):
+group["prop"] = group["births"] / group["births"].sum()
+return group
+names = names.groupby(["year", "sex"]).apply(add_prop)
+print(names)
